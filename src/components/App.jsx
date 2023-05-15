@@ -50,35 +50,24 @@ function App() {
   }
 
   function handleCardAdd(card) {
-    // let addedCards = JSON.parse(sessionStorage.getItem("addedCards"));
-    console.log('before add', addedCards);
-    let newList = [];
-    if (addedCards === []) {
-      newList.push(card);
-      setAddedCards(newList);
-      sessionStorage.setItem("addedCards", JSON.stringify(newList));
-      console.log(addedCards);
+    if (addedCards.includes(card)) {
+      increase(card);
     } else {
-      
-      setAddedCards(newList);
-      sessionStorage.setItem("addedCards", JSON.stringify(newList));
+      addedCards.push(card);
     }
 
-    // setAddedCards([card, ...addedCards]);
-    // sessionStorage.setItem('addedCards', JSON.stringify([card, ...addedCards]));
+    sessionStorage.setItem("addedCards", JSON.stringify(addedCards));
 
     setTotalCount(
       addedCards.reduce(function (currentSum, currentItem) {
         return currentSum + currentItem.count;
       }, 0)
     );
-    // setTotalCount(totalCount + 1);
-    console.log("add", addedCards);
   }
 
   function handleCardDelete(item) {
-    const cards = JSON.parse(sessionStorage.getItem("addedCards"));
-    const newCards = cards.filter((c) => item.id !== c.id);
+    const newCards = addedCards.filter((c) => item.id !== c.id);
+    setAddedCards(newCards);
     sessionStorage.setItem("addedCards", JSON.stringify(newCards));
     setTotalCount(totalCount - 1);
   }

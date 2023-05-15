@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import BasketCard from "./BasketCard";
 
 function Basket({ addedList, onBtnClick, increase, decrease }) {
-  // const [addedList, setAddedList] = useState(JSON.parse(sessionStorage.getItem("addedCards")));
   const [totalSum, setTotalSum] = useState(0);
 
   useEffect(() => {
