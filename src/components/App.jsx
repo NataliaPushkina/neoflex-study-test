@@ -5,7 +5,7 @@ import Footer from "./Footer";
 import Main from "./Main";
 import Basket from "./Basket";
 import { headphones } from "./constants.js";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [addedCards, setAddedCards] = useState([]);
@@ -49,18 +49,12 @@ function App() {
     );
   }
 
-  useEffect(() => {
-    console.log(addedCards);
-  }, [addedCards])
-
   function handleCardAdd(card) {
      if (addedCards.find(item => item.id === card.id)) {
       increase(card);
     } else {
       addedCards.push(card);
     }
-
-    console.log(addedCards)
     sessionStorage.setItem("addedCards", JSON.stringify(addedCards));
     setAddedCards(addedCards);
 
