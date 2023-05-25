@@ -1,28 +1,11 @@
-// import { useState, useEffect } from "react";
 import deletebtn from "../images/delete-icon.svg";
 import plus from "../images/plus.svg";
 
 function BasketCard(props) {
-  // const [count, setCount] = useState(1);
 
   function handleDeleteClick() {
     props.onBtnClick(props.card);
   }
-
-  // function addCount() {
-  //   setCount(count + 1);
-  // }
-
-  // function removeCount() {
-  //   setCount(count - 1);
-  //   console.log(props.card.count);
-  // }
-
-  // useEffect(() => {
-  //   if (count < 1) {
-  //     props.onBtnClick(props.card);
-  //   }
-  // });
 
   return (
     <li className="basket-card">

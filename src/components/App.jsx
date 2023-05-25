@@ -35,7 +35,7 @@ function App() {
       if (item.id === card.id) {
         return {
           ...item,
-          count: item.count - 1 > 1 ? --item.count : 1,
+          count: item.count - 1 >= 1 ? --item.count : 1,
         };
       }
       return item;
@@ -50,13 +50,13 @@ function App() {
   }
 
   function handleCardAdd(card) {
-    if (addedCards.includes(card)) {
+     if (addedCards.find(item => item.id === card.id)) {
       increase(card);
     } else {
       addedCards.push(card);
     }
-
     sessionStorage.setItem("addedCards", JSON.stringify(addedCards));
+    setAddedCards(addedCards);
 
     setTotalCount(
       addedCards.reduce(function (currentSum, currentItem) {
@@ -69,7 +69,7 @@ function App() {
     const newCards = addedCards.filter((c) => item.id !== c.id);
     setAddedCards(newCards);
     sessionStorage.setItem("addedCards", JSON.stringify(newCards));
-    setTotalCount(totalCount - 1);
+    setTotalCount(totalCount - item.count);
   }
 
   function countTotal(n) {
